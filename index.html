@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Driver Ed Street Grid</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="sim-shell" aria-label="Driving simulation">
+        <div class="topbar">
+          <div>
+            <h1>Driver Ed Street Grid</h1>
+            <p id="statusText">Press Space to start or stop. After a failed run, Space starts a new ride.</p>
+          </div>
+          <div class="meters" aria-label="Driving status">
+            <div class="meter">
+              <span>Motion</span>
+              <strong id="motionMeter">Stopped</strong>
+            </div>
+            <div class="meter">
+              <span>Points</span>
+              <strong id="scoreMeter">0</strong>
+            </div>
+            <div class="meter">
+              <span>Tickets</span>
+              <strong id="ticketMeter">0</strong>
+            </div>
+            <div class="meter">
+              <span>Run</span>
+              <strong id="runMeter">Ready</strong>
+            </div>
+            <div class="meter">
+              <span>Level</span>
+              <strong id="levelMeter">1</strong>
+            </div>
+            <div class="meter">
+              <span>Time</span>
+              <strong id="timeMeter">1:00</strong>
+            </div>
+            <div class="meter">
+              <span>Fare</span>
+              <strong id="fareMeter">$0</strong>
+            </div>
+            <div class="meter">
+              <span>Rating</span>
+              <strong id="ratingMeter">5.0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="simCanvas" width="960" height="680" aria-label="Top-down street grid simulator"></canvas>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Lesson controls and feedback">
+        <section>
+          <h2>Controls</h2>
+          <div class="control-grid">
+            <kbd>Space</kbd><span>Start / Stop</span>
+            <kbd>↑</kbd><span>Drive north</span>
+            <kbd>↓</kbd><span>Drive south</span>
+            <kbd>←</kbd><span>Drive west</span>
+            <kbd>→</kbd><span>Drive east</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Current Task</h2>
+          <p id="taskText">Come to a complete stop at stop signs. Stop for red lights. Continue on green.</p>
+        </section>
+
+        <section>
+          <h2>Ride Request</h2>
+          <p id="missionText">Level 1 route: drive over P at Maple Apartments, then drive over D at Civic Center within 60 seconds.</p>
+        </section>
+
+        <section>
+          <h2>Point Rules</h2>
+          <ul class="rules-list">
+            <li><strong>+50</strong> drive over D to complete a level</li>
+            <li><strong>+15</strong> drive over P to pick up the rider</li>
+            <li><strong>+10</strong> complete stop at a stop sign</li>
+            <li><strong>+8</strong> safe stop at a red or yellow light</li>
+            <li><strong>+5</strong> safe green-light crossing</li>
+            <li><strong>Restart</strong> after 2 tickets</li>
+            <li><strong>Restart</strong> for hitting a pedestrian</li>
+            <li><strong>Ticket</strong> for entering the traffic box on red or yellow</li>
+            <li><strong>Restart</strong> for running a stop sign</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Feedback</h2>
+          <ol id="feedbackList" class="feedback-list" aria-live="polite"></ol>
+        </section>
+
+        <button id="resetButton" type="button">Reset Drive</button>
+      </aside>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
